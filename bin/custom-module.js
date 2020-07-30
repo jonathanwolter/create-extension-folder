@@ -11,17 +11,13 @@ switch (command) {
         break;
 
     case 'deploy':
-        require('../scripts/deploy');
-        break;
+        require('../scripts/deploy');*/
 
     case 'init':
         require('../scripts/init');
         break;
-
-    case 'init-ts':
-        require('../scripts/init-ts');
-        break;*/
-        case 'test':
+    
+    case 'test':
         require('../scripts/test');
         break;
 }
