@@ -6,11 +6,11 @@ const [, , ...args] = process.argv;
 const command = args[0];
 
 switch (command) {
-    /*case 'build':
+    case 'build':
         require('../scripts/build');
         break;
 
-    case 'deploy':
+    /*case 'deploy':
         require('../scripts/deploy');*/
 
     case 'init':
