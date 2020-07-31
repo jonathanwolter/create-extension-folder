@@ -3,10 +3,6 @@
   "version": "1.4.0",
   "description": "",
   "main": "./bin/create-extension-folder.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "init": "node ./scripts/init.js"
-  },
   "author": "",
   "license": "ISC",
   "bin": {
