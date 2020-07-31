@@ -7,30 +7,53 @@ const copyfiles = util.promisify(require('copyfiles'));
 const templateFolder = path.join(__dirname, '../templates');
 const projectFolder = process.cwd();
 const packageFile = path.join(projectFolder, 'package.json');
-const projectName = path.basename(projectFolder);
+const folderName = path.basename(projectFolder);
+const args = process.argv
 
-(async () => {
-    console.log('copying boilerplate project files...');
-    process.chdir(templateFolder);
-    await copyfiles([`**/*`, projectFolder], {
-        all: true,
-        soft: true
-    });
-    process.chdir(projectFolder);
-    console.log('project files were copied!');
+let validArgs = true;
+let customFolder = false;
 
-    console.log('applying project name...');
-    const package = require(packageFile);
-    package.name = projectName;
-    fs.writeFileSync(packageFile, JSON.stringify(package, null, 2));
-    console.log('project name applied!')
+if (args.length = 1) {
+    projectName = args[0];
+    customFolder = true;
+    validArgs = true;
+} else if (args.length > 1) {
+    console.log("Too many arguments! exiting...")
+    validArgs = false;
+} else if (args.length < 1) {
+    projectName = folderName;
+    validArgs = true;
+    customFolder = false;
+}
 
-    console.log('installing dependencies...');
-    await execSync('npm i');
-    console.log('dependencies successfully installed!')
+if(customFolder){
+    process.mkdir(projectName)
+    process.chdir(projectName)
+}
+
+if (validArgs) {
+    (async () => {
+        console.log('copying boilerplate project files...');
+        process.chdir(templateFolder);
+        await copyfiles([`**/*`, projectFolder], {
+            all: true,
+            soft: true
+        });
+        process.chdir(projectFolder);
+        console.log('project files were copied!');
+
+        console.log('applying project name...');
+        const package = require(packageFile);
+        package.name = projectName;
+        fs.writeFileSync(packageFile, JSON.stringify(package, null, 2));
+        console.log('project name applied!')
+
+        console.log('installing dependencies...');
+        await execSync('npm i');
+        console.log('dependencies successfully installed!')
 
 
-    console.log('done!');
-    console.log('run "npm run build" to build your custom module.');
-    console.log('you can deploy your custom module with "npm run deploy"')
-})();
+        console.log('done!');
+        console.log('run "npm run build" to build your custom module.');
+    })();
+}
