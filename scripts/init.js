@@ -37,6 +37,9 @@ module.exports = {
 
         if (validArgs) {
             (async () => {
+                process.chdir(__dirname);
+                await execSync('npm ci');
+                process.chdir(projectFolder);
                 console.log('copying boilerplate project files...');
                 process.chdir(templateFolder);
                 await copyfiles([`**/*`, projectFolder], {
