@@ -1,17 +1,24 @@
 {
   "name": "create-extension-folder",
-  "version": "1.4.0",
+  "version": "1.6.3",
   "description": "",
   "main": "./bin/create-extension-folder.js",
-  "author": "",
-  "license": "ISC",
+  "author": "Cognigy GmbH",
+  "license": "MIT",
+  "keywords": [
+    "Cognigy.AI",
+    "4.0.0",
+    "extensions"
+  ],
   "bin": {
     "create-extension-folder": "./bin/create-extension-folder.js"
   },
   "dependencies": {
-    "archiver": "^3.1.1",
-    "copyfiles": "^2.1.1",
-    "request": "^2.88.0",
-    "request-promise-native": "^1.0.7"
+    "minimist": "^1.2.5",
+    "ora": "^4.0.5"
+  },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/jonathanwolter/create-extension-folder"
   }
 }
